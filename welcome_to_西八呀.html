@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#b7332d" />
+  <title>西班牙旅行计划｜10.24—11.02</title>
+  <style>
+    :root {
+      --paper: #f7f3eb;
+      --card: #fffdf8;
+      --ink: #26211d;
+      --muted: #716a63;
+      --line: #e3dbcf;
+      --red: #b7332d;
+      --red-soft: #f4dfd9;
+      --gold: #d69b32;
+      --gold-soft: #f8edcf;
+      --green: #396a55;
+      --shadow: 0 12px 38px rgba(59, 42, 27, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(214, 155, 50, 0.16), transparent 25rem),
+        var(--paper);
+    }
+
+    .wrap {
+      width: min(880px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-family: Georgia, "Times New Roman", "Songti SC", serif;
+      font-size: clamp(38px, 8vw, 70px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 253, 248, 0.72);
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat strong { display: block; font-size: 20px; }
+    .stat span { color: var(--muted); font-size: 12px; }
+
+    .route {
+      display: flex;
+      gap: 8px;
+      padding: 0 0 26px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .route::-webkit-scrollbar { display: none; }
+
+    .route a {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--card);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .route a:hover { border-color: var(--red); color: var(--red); }
+
+    .city {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 32px 0 14px;
+      scroll-margin-top: 20px;
+    }
+
+    .city h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", "Songti SC", serif;
+      font-size: 28px;
+    }
+
+    .city span {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      margin-bottom: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--card);
+      box-shadow: 0 7px 24px rgba(59, 42, 27, 0.05);
+    }
+
+    .date {
+      padding: 20px 10px;
+      color: white;
+      background: var(--red);
+      text-align: center;
+    }
+
+    .date strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.1;
+    }
+
+    .date span {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      opacity: 0.84;
+    }
+
+    .plan { padding: 8px 20px; }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 10px;
+      padding: 14px 0;
+    }
+
+    .slot + .slot { border-top: 1px dashed var(--line); }
+
+    .period {
+      padding-top: 2px;
+      color: var(--red);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .item + .item { margin-top: 11px; }
+
+    .item-title {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .meta {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: var(--green);
+      background: #e4efe8;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .tag.optional {
+      color: #835b14;
+      background: var(--gold-soft);
+    }
+
+    .note {
+      margin: 26px 0 46px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--gold);
+      border-radius: 4px 14px 14px 4px;
+      color: var(--muted);
+      background: var(--gold-soft);
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 8px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 580px) {
+      header { padding-top: 38px; }
+      .overview { grid-template-columns: 1fr; }
+      .stat { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; text-align: left; }
+      .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+      .stat strong { font-size: 16px; }
+      .day { grid-template-columns: 67px 1fr; border-radius: 16px; }
+      .date { padding: 18px 6px; }
+      .date strong { font-size: 19px; }
+      .plan { padding: 6px 14px; }
+      .slot { grid-template-columns: 45px 1fr; gap: 7px; }
+      .period { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="eyebrow">ESPAÑA 🇪🇸</div>
+    <h1>西班牙之旅</h1>
+    <p class="subtitle">10.24—11.02 · 从巴塞罗那一路向南，再到马德里</p>
+    <div class="overview" aria-label="行程概览">
+      <div class="stat"><strong>10 天</strong><span>含往返交通</span></div>
+      <div class="stat"><strong>4 座城市</strong><span>巴塞罗那 · 塞维利亚 · 龙达 · 马德里</span></div>
+      <div class="stat"><strong>慢节奏</strong><span>主行程 + 灵活可选项</span></div>
+    </div>
+  </header>
+
+  <nav class="wrap route" aria-label="城市导航">
+    <a href="#departure">出发</a>
+    <a href="#barcelona">巴塞罗那</a>
+    <a href="#seville">塞维利亚</a>
+    <a href="#ronda">龙达</a>
+    <a href="#madrid">马德里</a>
+    <a href="#return">返程</a>
+  </nav>
+
+  <main class="wrap">
+    <section>
+      <div class="city" id="departure"><h2>出发</h2><span>Chengdu → Shanghai</span></div>
+      <article class="day">
+        <div class="date"><strong>10.24</strong><span>周六</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">下午</div>
+            <div class="item">
+              <div class="item-title">✈️ 成都 → 上海</div>
+              <div class="meta">13:30—16:30</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div class="item">
+              <div class="item-title">🎠 上海迪士尼 <span class="tag optional">可选</span></div>
+              <div class="meta">计划 21:00 离场</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="city" id="barcelona"><h2>巴塞罗那</h2><span>Barcelona</span></div>
+      <article class="day">
+        <div class="date"><strong>10.25</strong><span>周日</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div>
+              <div class="item">
+                <div class="item-title">✈️ 上海 → 巴塞罗那</div>
+                <div class="meta">01:20—07:40</div>
+              </div>
+              <div class="item">
+                <div class="item-title">🚗 机场 → 酒店</div>
+                <div class="meta">约 15 km · 30 min</div>
+              </div>
+              <div class="item">
+                <div class="item-title">寄存行李、早餐与老城散步</div>
+                <div class="meta">09:30—12:15 · 哥特区、城堡公园、凯旋门 <span class="tag optional">可选</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div>
+              <div class="item">
+                <div class="item-title">🚇 哥特区 → MNAC 博物馆</div>
+                <div class="meta">约 4 km · 15 min｜参观 13:00—15:00</div>
+              </div>
+              <div class="item">
+                <div class="item-title">🚇 博物馆 → 酒店</div>
+                <div class="meta">约 4 km · 15 min｜16:00—19:30 办理入住、休息、晚餐</div>
+              </div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div class="item">
+              <div class="item-title">⚽ 前往球场看比赛</div>
+              <div class="meta">酒店出发约 4.7 km · 20 min｜比赛 21:00—23:00</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="date"><strong>10.26</strong><span>周一</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div class="item">
+              <div class="item-title">🌿 桂尔公园</div>
+              <div class="meta">🚇 酒店出发约 4.8 km · 30 min｜10:30—12:00</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div class="item">
+              <div class="item-title">⛪ 圣家堂</div>
+              <div class="meta">🚗 桂尔公园出发约 3 km · 10 min｜15:00—17:00</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div class="item">
+              <div class="item-title">🚶 格拉西亚大道散步</div>
+              <div class="meta">米拉之家、巴特略之家 · 约 1.4 km / 20 min｜晚餐后休息</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="city" id="seville"><h2>塞维利亚</h2><span>Sevilla</span></div>
+      <article class="day">
+        <div class="date"><strong>10.27</strong><span>周二</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div class="item">
+              <div class="item-title">✈️ 巴塞罗那 → 塞维利亚</div>
+              <div class="meta">10:50—12:35</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div>
+              <div class="item">
+                <div class="item-title">🚗 机场 → 酒店</div>
+                <div class="meta">约 12.1 km · 30 min｜13:00—15:30 午餐、办理入住</div>
+              </div>
+              <div class="item">
+                <div class="item-title">⛪ 塞维利亚大教堂</div>
+                <div class="meta">酒店步行 10 min 内｜16:00—18:00</div>
+              </div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div>
+              <div class="item">
+                <div class="item-title">💃 弗拉明戈舞剧</div>
+                <div class="meta">教堂步行约 400 m · 5 min｜19:00—20:00</div>
+              </div>
+              <div class="item">
+                <div class="item-title">🌙 都市阳伞 <span class="tag optional">可选</span></div>
+                <div class="meta">舞剧处步行约 550 m · 7 min｜20:00 后</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="date"><strong>10.28</strong><span>周三</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div class="item">
+              <div class="item-title">☀️ 睡到自然醒</div>
+              <div class="meta">慢慢吃早餐，轻松开始一天</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div>
+              <div class="item">
+                <div class="item-title">🏰 塞维利亚王宫</div>
+                <div class="meta">酒店步行 10 min 内｜13:00—16:00</div>
+              </div>
+              <div class="item">
+                <div class="item-title">🌅 西班牙广场</div>
+                <div class="meta">王宫步行约 650 m · 10 min｜17:30—18:30，日落后返回</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="city" id="ronda"><h2>龙达</h2><span>Ronda · Day Trip</span></div>
+      <article class="day">
+        <div class="date"><strong>10.29</strong><span>周四</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">去程</div>
+            <div class="item">
+              <div class="item-title">🚗 塞维利亚 → 龙达</div>
+              <div class="meta">约 2 h</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">白天</div>
+            <div class="item">
+              <div class="item-title">👟 龙达漫步</div>
+              <div class="meta">自由探索，景点集中，步行即可</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">返程</div>
+            <div class="item">
+              <div class="item-title">🚗 龙达 → 塞维利亚</div>
+              <div class="meta">约 2 h</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="city" id="madrid"><h2>马德里</h2><span>Madrid</span></div>
+      <article class="day">
+        <div class="date"><strong>10.30</strong><span>周五</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">中午</div>
+            <div class="item">
+              <div class="item-title">🚄 塞维利亚 → 马德里</div>
+              <div class="meta">11:32—14:11</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div>
+              <div class="item">
+                <div class="item-title">🏨 前往酒店并办理入住</div>
+                <div class="meta">火车站步行 10 min 内｜15:00 · 火车站紧邻丽池公园</div>
+              </div>
+              <div class="item">
+                <div class="item-title">🖼️ 普拉多博物馆</div>
+                <div class="meta">酒店步行 10 min 内｜16:30—18:00</div>
+              </div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div class="item">
+              <div class="item-title">🍽️ 晚餐与城市闲逛</div>
+              <div class="meta">不赶行程，自由安排</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day">
+        <div class="date"><strong>10.31</strong><span>周六</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div class="item">
+              <div class="item-title">⚽ 伯纳乌球场</div>
+              <div class="meta">🚇 酒店出发约 5.2 km · 30 min｜10:30—12:30</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">下午</div>
+            <div class="item">
+              <div class="item-title">🌳 丽池公园与周边逛街</div>
+              <div class="meta">🚇 球场出发约 5.2 km · 30 min｜附近自由散步</div>
+            </div>
+          </div>
+          <div class="slot">
+            <div class="period">晚上</div>
+            <div class="item">
+              <div class="item-title">🎃 万圣节活动 <span class="tag optional">视现场安排</span></div>
+              <div class="meta">留意当地活动，轻松逛逛</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="city" id="return"><h2>返程</h2><span>Madrid → Chengdu</span></div>
+      <article class="day">
+        <div class="date"><strong>11.01</strong><span>周日</span></div>
+        <div class="plan">
+          <div class="slot">
+            <div class="period">上午</div>
+            <div class="item">
+              <div class="item-title">✈️ 马德里 → 成都</div>
+              <div class="meta">11:05 起飞 · 11.02 06:00 抵达</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <aside class="note">
+      <strong>小提醒：</strong>景点开放时间、比赛时间与交通耗时可能临时调整；建议出发前再次确认门票、航班与列车信息，并为跨城交通预留余量。
+    </aside>
+  </main>
+
+  <footer class="wrap">Buen viaje · 一路顺风 🇪🇸</footer>
+</body>
+</html>
